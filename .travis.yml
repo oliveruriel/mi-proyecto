@@ -1,0 +1,25 @@
+language: php
+
+php:
+  - '8.0'  # Define la versión de PHP que usará Travis CI
+  - '8.1'
+  - '8.2'
+
+# Antes de ejecutar el script, instala dependencias o configura el entorno
+before_script:
+  - composer install  # Si usas Composer para dependencias, se instalarán aquí
+
+# Define los comandos para probar los archivos
+script:
+  - php -l /path/to/index.php       # Verifica errores de sintaxis en index.php
+  - php -l /path/to/nasa.php        # Verifica errores de sintaxis en nasa.php
+  - php -l /path/to/webservice.php  # Verifica errores de sintaxis en webservice.php
+  - vendor/bin/phpunit tests        # Ejecuta pruebas unitarias (opcional)
+
+# Configura notificaciones (opcional)
+notifications:
+  email:
+    recipients:
+      - goldensawg@gmail.com
+    on_success: never  # No notifiques si pasa
+    on_failure: always # Notifica si falla
